@@ -42,3 +42,70 @@ The purpose of this mod is to race with different type of sessions on your BeamM
 
 ## Command
 Help - shows the command list
+
+# For developers
+
+<details>
+  <summary>Show</summary>
+
+## Code snippets
+
+### Timer
+
+```
+local seconds = 0
+
+function CountSeconds()
+    seconds = seconds + 1
+end
+
+-- create a custom event called 'EverySecond'
+-- and register the handler function 'CountSeconds' to it
+MP.RegisterEvent("EverySecond", "CountSeconds")
+
+-- create a timer for this event, which will fire every 1000ms (1s)
+MP.CreateEventTimer("EverySecond", 1000)
+```
+
+### Getting player position
+```
+local raw_pos, error = MP.GetPositionRaw(player_id, vehicle_id)
+
+if error == "" then
+    print(raw_pos)
+else
+    print(error)
+end
+```
+
+### Getting player name
+```
+MP.GetPlayerName(player_id)
+```
+
+### Getting players list
+```
+local players = MP.GetPlayers()
+print(#players) -- note how print() doesn't change
+```
+
+### 
+```
+
+```
+
+### 
+```
+
+```
+
+### 
+```
+
+```
+
+### 
+```
+
+```
+</details>
