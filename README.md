@@ -48,7 +48,9 @@ Help - shows the command list
 <details>
   <summary>Show</summary>
 
-## Code snippets
+# Code snippets
+
+## LUA
 
 ### Timer
 
@@ -89,14 +91,9 @@ local players = MP.GetPlayers()
 print(#players) -- note how print() doesn't change
 ```
 
-### 
+### Sending message to ANGULAR JS
 ```
-
-```
-
-### 
-```
-
+guihooks.trigger('MessageReady', message)
 ```
 
 ### 
@@ -104,8 +101,28 @@ print(#players) -- note how print() doesn't change
 
 ```
 
-### 
+## ANGULAR JS
+
+### Sending message to lua
+```
+$scope.sendMessage = function(event) {
+                if (event && event.key !== 'Enter')
+                    return
+
+                if ($scope.message == '')
+                    return
+
+                // Forward the message to the Lua extension to modify it
+                bngApi.engineLua('extensions.exampleMod.modifyMessage("' + $scope.message + '")')
+                $scope.message = ''
+            }
 ```
 
+### Reading message from lua
+```
+// The `modifyMessage` function will call this hook with the modified data
+            $scope.$on('MessageReady', function(_, modifiedMessage) {
+                $scope.messages.push(modifiedMessage)
+            });
 ```
 </details>

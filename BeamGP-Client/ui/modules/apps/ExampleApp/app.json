@@ -1,0 +1,19 @@
+{
+  "domElement": "<example-app></example-app>",
+  "name": "Example App",
+  "types": [
+    "ui.apps.categories.debug"
+  ],
+  "description": "example-app",
+  "css": {
+    "left": "0px",
+    "height": "auto",
+    "width": "270px",
+    "min-width": "200px",
+    "min-height": "90px",
+    "top": "0px"
+  },
+  "author": "Daniel W",
+  "version": "0.1",
+  "directive": "exampleApp"
+}
