@@ -25,11 +25,12 @@ local markersData = {
     }
 }
 
+log('I', "BeamGP", "test")
+
 -- Game Function Hooks
 --------------------------------------------
 local function onExtensionLoaded()
-
-    AddEventHandler("eventoCustom", onEventoCustom)
+    AddEventHandler("startStopCount", onEventoCustom)
 
     log('D', "onExtensionLoaded", "Called")
 end
@@ -78,6 +79,10 @@ local function onUpdate()
             end
         end
     end
+end
+
+local function startStopCount()
+    guihooks.trigger('clicked')
 end
 
 M.onUpdate = onUpdate

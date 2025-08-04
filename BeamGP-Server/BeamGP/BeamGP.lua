@@ -35,7 +35,6 @@ function onChatMessage(player_id, player_name, message)
 end
 
 function onPlayerJoining(player_id)
-    print("Setting up player")
 	table.insert(old_inside, false)
 end
 
@@ -69,6 +68,7 @@ function CountSeconds()
 
                 if old_inside[playerId + 1] == false and IsEntityInsideArea(playerPos, marker.pos, 2) == true then
                     print("Player è dentro l'area")
+                    MP.TriggerClientEventJson(playerId, "startStopCount", {"ciao"})
                     old_inside[playerId + 1] = true
                 end
 
@@ -86,4 +86,4 @@ end
 MP.RegisterEvent("EverySecond", "CountSeconds")
 
 -- create a timer for this event, which will fire every 1000ms (1s)
-MP.CreateEventTimer("EverySecond", 25)
+MP.CreateEventTimer("EverySecond", 1000)
