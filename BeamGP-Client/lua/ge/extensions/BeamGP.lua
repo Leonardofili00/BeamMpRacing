@@ -1,3 +1,5 @@
+--examplePlugin (CLIENT)
+
 local M = {}
 
 local markers = {}
@@ -25,21 +27,19 @@ local markersData = {
     }
 }
 
--- Game Function Hooks
---------------------------------------------
+--custom function called by command !jump (see server-side examplePlugin)
+local function test(data)
+	TriggerServerEvent("test", data)
+end
+
 local function onExtensionLoaded()
-
-    AddEventHandler("eventoCustom", onEventoCustom)
-
-    log('D', "onExtensionLoaded", "Called")
+	AddEventHandler("test", test) --name of event to call (string), and the function that calling this event will process
+	log('W', "examplePlugin", "examplePlugin LOADED")
 end
 
 local function onExtensionUnloaded()
-    log('D', "onExtensionUnloaded", "Called")
+	log('W', "examplePlugin", "examplePlugin UNLOADED")
 end
-
--- Custom Functions
---------------------------------------------
 
 local function createMarker(markerName, markerShape, markerPos, markerRot, markerColor)
     local marker =  createObject('TSStatic')
@@ -80,20 +80,10 @@ local function onUpdate()
     end
 end
 
+M.onExtensionLoaded = onExtensionLoaded
+M.onExtensionUnloaded = onExtensionUnloaded
 M.onUpdate = onUpdate
 
--- Export Interface
---------------------------------------------
-M.onExtensionLoaded        = onExtensionLoaded
-M.onExtensionUnloaded      = onExtensionUnloaded
-
---[[ Other functions could include:
-      - onPreRender(dtReal, dtSim, dtRaw)
-      - onUpdate(dtReal, dtSim, dtRaw)
-      - onClientPreStartMission(levelPath)
-      - onClientPostStartMission(levelPath)
-
-    To find all of these, search the following in `BeamNG.Drive/lua`: `extensions.hook(`
---]]
+M.onInit = function() setExtensionUnloadMode(M, "manual") end
 
 return M
