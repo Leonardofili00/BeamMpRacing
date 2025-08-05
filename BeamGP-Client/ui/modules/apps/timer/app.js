@@ -13,17 +13,17 @@ angular.module('beamng.apps')
             
             $scope.counter = 0;
 
-            $scope.clicked = function () {
+            $scope.$on('toggleTimer', function() {
                 counting = !counting;
                 
                 if (counting) {
-                startCounter();
+                    startCounter();
                 } else {
                     if (mytimeout) {
                         $timeout.cancel(mytimeout);
                     }
                 }
-            };
+            });
 
             function startCounter() {
                 $scope.counter++;

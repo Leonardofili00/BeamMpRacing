@@ -27,13 +27,13 @@ local markersData = {
     }
 }
 
---custom function called by command !jump (see server-side examplePlugin)
-local function test(data)
-	TriggerServerEvent("test", data)
+local function toggleTimer(data)
+    guihooks.trigger('toggleTimer')
+	TriggerServerEvent("callBack", "toggleTimer()")
 end
 
 local function onExtensionLoaded()
-	AddEventHandler("test", test) --name of event to call (string), and the function that calling this event will process
+	AddEventHandler("toggleTimer", toggleTimer)
 	log('W', "examplePlugin", "examplePlugin LOADED")
 end
 
